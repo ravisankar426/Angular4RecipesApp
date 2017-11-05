@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12">
+    <a routerLink="new"
+    class="btn btn-success">New Recipe</a>
+  </div>
+</div>
+<hr>
+<div class="row" *ngIf="(recipeState | async).recipes!=null">
+  <div class="col-xs-12">
+    <a class="list-group-item clearfix"
+    (click)="selectRecipe(recipe.id)"
+    [routerLink]="recipe.id"
+    routerLinkActive="active"
+    *ngFor="let recipe of (recipeState | async).recipes"
+    >
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+        <p class="list-group-item-text">{{recipe.description}}</p>
+      </div>
+      <div class="pull-right">
+        <img alt="" src="{{recipe.imagePath}}" class="img-responsive" style="max-height:50px;"/>
+      </div>
+    </a>
+  </div>
+</div>
