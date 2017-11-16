@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Actions, Effect } from '@ngrx/effects';
-import {Http,Response} from '@angular/http';
+import { Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/switchMap';
 import {fromPromise} from 'rxjs/observable/fromPromise';
 import * as RecipeActions from  './recipe.actions';
@@ -13,7 +13,6 @@ import { Common } from './../../common';
 import { Recipe } from './../recipe.model';
 import * as firebase from 'firebase';
 import * as fromRecipe from '../store/recipe.reducers';
-import {RequestOptions} from '@angular/http';
 
 @Injectable()
 export class RecipeEffects{
@@ -83,6 +82,23 @@ export class RecipeEffects{
     .mergeMap((response:Response)=>{
         return[{
             type:RecipeActions.SET_SELECTED_RECIPE,
+            payload:response.json()
+        }];
+    });
+
+    @Effect()
+    addRecipe=this.actions$
+    .ofType(RecipeActions.TRY_ADD_RECIPE)
+    .map((action:RecipeActions.TryAddRecipe)=>{
+        return action.payload
+    })
+    .switchMap((recipe:Recipe)=>{
+        return this.http.post('http://localhost:3000/api/recipe/add/',recipe);        
+    })
+    .mergeMap((response:Response)=>{
+        console.log(response.json());
+        return[{
+            type:RecipeActions.ADD_RECIPE,
             payload:response.json()
         }];
     });

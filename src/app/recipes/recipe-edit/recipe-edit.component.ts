@@ -87,7 +87,7 @@ export class RecipeEditComponent implements OnInit {
       this.store.dispatch(new RecipeActions.TryUpdateRecipeById({index:this.id,updatedRecipe:this.recipeForm.value}));
     }
     else{
-      this.store.dispatch(new RecipeActions.AddRecipe(this.recipeForm.value));
+      this.store.dispatch(new RecipeActions.TryAddRecipe(this.recipeForm.value));
     }
     this.cancel();  
   }
@@ -96,7 +96,7 @@ export class RecipeEditComponent implements OnInit {
     if(this.editMode)    
       this.router.navigate(['recipes',this.id]);    
     else
-      this.router.navigate(['../',{relativeTo:this.route}]);
+      this.router.navigate(['/recipes']);
   }
 
   addIngredient(){

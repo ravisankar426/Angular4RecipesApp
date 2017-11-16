@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li style="cursor:pointer" (click)="signOut()"><a>Log Out</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" *ngIf="(authState | async).authenticated">
+        <!-- <ul class="nav navbar-nav navbar-right" *ngIf="(authState | async).authenticated">
             <li class="dropdown" appDropdown>
                 <a class="dropdown-toggle" role="button">Manage Data <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -27,6 +27,6 @@
                     <li style="cursor:pointer" (click)="fetchData()"><a>Fetch Data</a></li>
                 </ul>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </nav>

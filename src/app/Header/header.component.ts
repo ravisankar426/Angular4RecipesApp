@@ -27,13 +27,14 @@ export class HeaderComponent implements OnInit
         private store:Store<fromRecipe.FeatureState>){
 
     }
-    fetchData(){
-        this.router.navigate(['recipes']);
-    }
+    
+    // fetchData(){
+    //     this.router.navigate(['recipes']);
+    // }
 
-    saveData(){
-        this.store.dispatch(new RecipeActions.SaveRecipes());
-    }
+    // saveData(){
+    //     this.store.dispatch(new RecipeActions.SaveRecipes());
+    // }
 
     signOut(){
         this.store.dispatch(new AuthActions.TrySignOut());
